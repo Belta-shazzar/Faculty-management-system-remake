@@ -31,9 +31,7 @@ public class Admin {
         } while (value == 0);
         return value;
     }
-//    git config --global user.name "Belta-shazzar"
-
-//    git config --global user.email "oguejioforchinonso20@gmail.com"
+//    $ ssh-keygen -t rsa -b 4096 -C "oguejioforchinonso20@gmail.com"
 
 //    Method for department creation
     public void createDepartment() {

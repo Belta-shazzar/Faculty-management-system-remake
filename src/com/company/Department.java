@@ -6,12 +6,22 @@ public class Department {
     private static int idSource = 100;
     private int id;
     private String departmentName;
+    private static int departmentPopSrc = 0;
+    private int departmentPop;
     private Date dateCreated;
 
     public Department(String departmentName) {
         this.id = idSource++;
         this.departmentName = departmentName;
         this.dateCreated = new Date();
+    }
+
+    public int getDepartmentPop() {
+        return departmentPop;
+    }
+
+    public void setDepartmentPop(int departmentPop) {
+        this.departmentPop = departmentPop;
     }
 
     public int getId() {
@@ -41,7 +51,8 @@ public class Department {
     @Override
     public String toString() {
         return "{Department id: " + id +
-                " Department name: " + departmentName +
-                " Date created: " + dateCreated + "}\n";
+                ", Department name: " + departmentName +
+                ", Date created: " + dateCreated +
+                ", Population: " + departmentPop + "}\n";
     }
 }

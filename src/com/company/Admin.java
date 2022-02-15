@@ -32,7 +32,6 @@ public class Admin {
         return value;
     }
 
-
     //    Method for department creation
     public void createDepartment() {
         System.out.println("For number of departments to be created,");
@@ -85,13 +84,6 @@ public class Admin {
                             iterator.remove();
                         }
                     }
-
-//                    Iterator<Student> iterator1 = studentArrayList.iterator();
-//                    while (iterator1.hasNext()) {
-//                        if (iterator1.next().getDepartment().contains(iterator.hasNext())) {
-//                            iterator.remove();
-//                        }
-//                    }
                 }
             }
         }
@@ -116,7 +108,6 @@ public class Admin {
                 System.out.println("Entered id matches no department");
             }
         } while (deptSelect == null);
-
         return deptSelect;
     }
 
@@ -138,8 +129,7 @@ public class Admin {
             System.out.println("No available department. Create department first.");
         } else {
             int opsNumber = 0;
-            int i = 0;
-            for (; i < 2;) {
+            for (int i = 0; i < 2;) {
                 try {
                     System.out.print("Number of student to be added: ");
                     opsNumber = input.nextInt();
@@ -147,29 +137,21 @@ public class Admin {
                     errorMsg();
                 }
                 input.nextLine();
+
                 if (opsNumber > 0) {
+                    for (int j = 0; j < opsNumber; j++) {
+                        String studentDept = deptSet();
+                        student = new Student(firstNameGet(), lastNameGet(), studentDept);
+                        studentArrayList.add(student);
+                    }
                     break;
                 } else i++;
             }
-            if (opsNumber > 0) {
-                for (int j = 0; j < opsNumber; j++) {
-                    String studentDept = deptSet();
-                    int deptPop = 0;
-                    for (Student student : studentArrayList) {
-                        for (Department department : departmentArrayList) {
-                            if (student.getDepartment() == department.getDepartmentName()) {
-                                deptPop = department.getDepartmentPop() + 1;
-                            }
-                        }
-                    }
-                    student = new Student(firstNameGet(), lastNameGet(), studentDept);
-                    department.setDepartmentPop(deptPop);
-                    studentArrayList.add(student);
-                }
-            } else {
+            if (opsNumber == 0) {
                 System.out.println("Return to main menu.");
+            } else {
+                System.out.println(opsNumber + " student added.");
             }
-            System.out.println(opsNumber + " student added.");
         }
     }  // Student add methods stop here.
 
@@ -189,22 +171,26 @@ public class Admin {
             System.out.println("for number of students to be removed, ");
             int action = testMethod();
 
-            int count = 0;
-            for (; count < action; count++) {
-                viewStudentList();
-                int idSelect;
-                try {
-                    System.out.print("Select student id: ");
-                    idSelect = input.nextInt();
-                } catch (InputMismatchException ex) {
-                    System.out.println("Id does not exist");
-                    break;
-                }
+            if (action > departmentArrayList.size()) {
+                System.out.println("Input too large");
+            } else {
+                int count = 0;
+                for (; count < action; count++) {
+                    viewStudentList();
+                    int idSelect;
+                    try {
+                        System.out.print("Select student id: ");
+                        idSelect = input.nextInt();
+                    } catch (InputMismatchException ex) {
+                        System.out.println("Id does not exist");
+                        break;
+                    }
 
-                Iterator<Student> iterator = studentArrayList.iterator();
-                while (iterator.hasNext()) {
-                    if (iterator.next().getId() == idSelect) {
-                        iterator.remove();
+                    Iterator<Student> iterator = studentArrayList.iterator();
+                    while (iterator.hasNext()) {
+                        if (iterator.next().getId() == idSelect) {
+                            iterator.remove();
+                        }
                     }
                 }
             }

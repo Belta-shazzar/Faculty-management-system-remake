@@ -77,6 +77,7 @@ public class Admin {
                         System.out.println("Id does not exist");
                         break;
                     }
+                    input.nextLine();
 
                     Iterator<Department> iterator = departmentArrayList.iterator();
                     while (iterator.hasNext()) {
@@ -185,6 +186,7 @@ public class Admin {
                         System.out.println("Id does not exist");
                         break;
                     }
+                    input.nextLine();
 
                     Iterator<Student> iterator = studentArrayList.iterator();
                     while (iterator.hasNext()) {
